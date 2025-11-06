@@ -1,42 +1,215 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>AGP Training Hub</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-    body {font-family: system-ui, sans-serif; margin:0; background:#fafafa; color:#222;}
-    header {background:#fff; border-bottom:1px solid #ddd; padding:20px; text-align:center;}
-    h1 {margin:0; font-size:24px;}
-    p {margin:6px 0 0;}
-    main {max-width:900px; margin:30px auto; padding:0 20px; display:grid; gap:20px;}
-    a.card {background:#fff; border:1px solid #ddd; border-radius:12px; padding:16px;
-      text-decoration:none; color:#000; display:block; transition:.15s;}
-    a.card:hover {box-shadow:0 4px 15px rgba(0,0,0,.1); transform:translateY(-3px);}
-    h3 {margin:0 0 8px; font-size:18px;}
-    footer {text-align:center; color:#777; font-size:14px; padding:20px 0; border-top:1px solid #eee;}
-  </style>
-</head>
-<body>
-  <header>
-    <h1>AGP Training Hub</h1>
-    <p>Select a module to view training</p>
-  </header>
+  <head>
+    <meta charset="utf-8" />
+    <title>AGP Training Hub • FAQ & Modules</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Brand-inspired styling -->
+    <style>
+      :root {
+        --bg: #f8f6f3;
+        /* warm off-white */
+        --ink: #2d3436;
+        /* dark text */
+        --muted: #6b6f72;
+        /* secondary text */
+        --agp: #4a7c59;
+        /* AGP green */
+        --agp-2: #5d8f6a;
+        /* gradient partner */
+        --card: #ffffff;
+        --ring: #e6e3dc;
+        --shadow: 0 10px 24px rgba(0, 0, 0, .07);
+        --radius: 14px;
+        --maxw: 1100px;
+      }
 
-  <main>
-    <a class="card" href="Edit-Timesheet-locations-Production-Lines/index.html">
-      <h3>Edit Timesheet Locations (Production Lines)</h3>
-      <p>SCORM module – Opens inside ReadyTech</p>
-    </a>
+      * {
+        box-sizing: border-box
+      }
 
-    <a class="card" href="Edit%20Timesheet%20Start%20times%20%28Production%20Lines%29/index.html">
-      <h3>Edit Timesheet Start Times (Production Lines)</h3>
-      <p>SCORM module – Opens inside ReadyTech</p>
-    </a>
+      html,
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font: 16px/1.55 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif
+      }
 
-   
-  </main>
+      /* Header / hero */
+      header {
+        background: linear-gradient(135deg, var(--agp) 0%, var(--agp-2) 100%);
+        color: #fff;
+        padding: 56px 20px 44px;
+        border-bottom: 1px solid rgba(255, 255, 255, .12);
+      }
 
-  <footer>Australian Garlic Producers • Training Portal</footer>
-</body>
+      .wrap {
+        max-width: var(--maxw);
+        margin: 0 auto;
+        padding: 0 20px
+      }
+
+      .hero h1 {
+        margin: 0 0 8px;
+        font-size: 32px;
+        letter-spacing: .2px
+      }
+
+      .hero p {
+        margin: 0;
+        color: #eef3ee;
+        max-width: 760px
+      }
+
+      /* Grid of modules */
+      main {
+        padding: 28px 0 56px
+      }
+
+      .grid {
+        display: grid;
+        gap: 16px;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr))
+      }
+
+      .card {
+        display: block;
+        text-decoration: none;
+        color: inherit;
+        background: var(--card);
+        border: 1px solid var(--ring);
+        border-radius: var(--radius);
+        padding: 16px;
+        box-shadow: var(--shadow);
+        transition: transform .12s ease, box-shadow .12s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 14px 30px rgba(0, 0, 0, .11)
+      }
+
+      .card h3 {
+        margin: 2px 0 6px;
+        font-size: 18px
+      }
+
+      .meta {
+        font-size: 13px;
+        color: var(--muted)
+      }
+
+      .tags {
+        margin-top: 8px
+      }
+
+      .tag {
+        display: inline-block;
+        font-size: 12px;
+        border: 1px solid var(--ring);
+        border-radius: 999px;
+        padding: 4px 10px;
+        margin-right: 6px;
+        color: #435649;
+        background: #faf9f6
+      }
+
+      /* FAQ */
+      .section-title {
+        margin: 36px 0 14px;
+        font-size: 22px;
+        color: var(--agp)
+      }
+
+      .faq {
+        max-width: 860px
+      }
+
+      details {
+        background: var(--card);
+        border: 1px solid var(--ring);
+        border-radius: var(--radius);
+        padding: 14px 16px;
+        margin-bottom: 12px;
+        box-shadow: var(--shadow)
+      }
+
+      summary {
+        cursor: pointer;
+        font-weight: 600;
+        outline: none
+      }
+
+      details[open] {
+        border-color: #d8d4cb
+      }
+
+      details p {
+        margin: 10px 0 0;
+        color: var(--muted)
+      }
+
+      /* Footer */
+      footer {
+        padding: 28px 0;
+        border-top: 1px solid #ebe7df;
+        color: var(--muted);
+        text-align: center;
+        background: #fff
+      }
+
+      /* Responsive */
+      @media (max-width:720px) {
+        .hero h1 {
+          font-size: 26px
+        }
+      }
+    </style>undefined
+  </head>undefined<body>
+    <header>
+      <div class="wrap hero">
+        <h1>AGP Training Hub</h1>
+      </div>
+    </header>
+    <main>
+      <div class="wrap">
+        <!-- Training modules -->
+        <h2 class="section-title">Modules</h2>
+        <div class="grid" aria-label="Training modules">
+          <!-- Edit these two links to match your exact folder names if needed -->
+          <a class="card" href="Edit-Timesheet-locations-Production-Lines/index.html">
+            <h3>Edit Timesheet Locations (Production Lines)</h3>
+            <div class="tags">
+              <span class="tag">Timesheets</span>
+              <span class="tag">Production</span>
+              <span class="tag">RDY Tech</span>
+            </div>
+          </a>
+          <a class="card" href="Edit%20Timesheet%20Start%20times%20%28Production%20Lines%29/index.html">
+            <h3>Edit Timesheet Start Times (Production Lines)</h3>
+            <div class="tags">
+              <span class="tag">Timesheets</span>
+              <span class="tag">Production</span>
+              <span class="tag">RDY Tech</span>
+            </div>
+          </a>
+          <!-- Add more modules by duplicating a .card block -->
+        </div>
+        <!-- FAQs -->
+        <h2 class="section-title">FAQ</h2>
+        <div class="faq">
+          </details>
+          <details>
+            <summary>Who do I contact for help?</summary>
+            <p>Contact HR or your manager.</p>
+          </details>
+        </div>
+      </div>undefined
+    </main>undefined<footer>
+      <div class="wrap">
+        <small>© Australian Garlic Producers — Training</small>
+      </div>undefined
+    </footer>undefined
+  </body>undefined
 </html>

@@ -5,10 +5,10 @@
   <title>Edit Timesheet locations (Production Lines)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
-    html, body { margin:0; padding:0; background:#fff; font-family:Arial, sans-serif; }
+    html, body { margin:0; padding:0; height:100%; background:#fff; font-family:Arial, sans-serif; }
     .wrap { width:100%; max-width:100%; margin:0 auto; }
-    /* Hard-lock the iframe height */
-    #scribe { display:block; width:100%; height:750px !important; border:0; }
+    /* Let JS set exact height; keep sensible minimum to avoid short frames */
+    #scribe { display:block; width:100%; min-height:750px; border:0; }
   </style>
 </head>
 <body>
@@ -16,12 +16,13 @@
     <iframe
       id="scribe"
       src="https://scribehow.com/embed/Edit_Timesheet_locations_Production_Lines__yCkJxv_7R6yfU0Odu6D7Pw?as=scrollable"
-      allow="fullscreen">
+      allow="fullscreen"
+      loading="eager">
     </iframe>
   </div>
 
   <script>
-    /* SCORM 1.2 minimal runtime */
+    /* --- SCORM 1.2 minimal runtime --- */
     var API=null, sessionStartTime, sessionTimerInterval;
     function findAPI(w){ if(w.API && typeof w.API==="object") return w.API;
       if(w.parent && w.parent!==w) return findAPI(w.parent);
@@ -45,11 +46,17 @@
     function completeSCO(){ const api=getAPI(); if(!api) return;
       api.LMSSetValue("cmi.core.lesson_status","completed"); api.LMSCommit("");
     }
-
     window.addEventListener("load", initializeSCORM);
     window.addEventListener("unload", terminateSCORM);
-    // If you use a code to complete:
-    // function validateCompletionCode(entered, correct){ if((entered||"").toLowerCase()===(correct||"").toLowerCase()){ completeSCO(); return true;} return false; }
+
+    /* --- Dynamic height to reduce LMS scaling blur --- */
+    function resizeFrame(){
+      var h = Math.max(750, window.innerHeight || document.documentElement.clientHeight || 750);
+      // Subtract any known LMS chrome if needed; start with none.
+      document.getElementById('scribe').style.height = h + 'px';
+    }
+    window.addEventListener('load', resizeFrame);
+    window.addEventListener('resize', resizeFrame);
   </script>
 </body>
 </html>
